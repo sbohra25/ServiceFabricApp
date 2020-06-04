@@ -1,14 +1,12 @@
+using Microsoft.ServiceFabric.Services.Communication.Runtime;
+using Microsoft.ServiceFabric.Services.Runtime;
+using ServiceFabricApp.EquipmentCatalog.Model;
 using System;
 using System.Collections.Generic;
 using System.Fabric;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.ServiceFabric.Data.Collections;
-using Microsoft.ServiceFabric.Services.Communication.Runtime;
-using Microsoft.ServiceFabric.Services.Remoting.V2.FabricTransport.Runtime;
-using Microsoft.ServiceFabric.Services.Runtime;
-using ServiceFabricApp.EquipmentCatalog.Model;
 
 namespace ServiceFabricApp.EquipmentCatalog
 {
@@ -75,8 +73,8 @@ namespace ServiceFabricApp.EquipmentCatalog
             // Adding data to service fabric reliable statemanager database
             await _repo.AddEquipment(equipment1);
             await _repo.AddEquipment(equipment2);
-
-
+            
+            // This is to validate replica concept provided by service fabric
             IEnumerable<Equipment> all = await _repo.GetAllEquipment();
 
         }

@@ -1,15 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc;
+using ServiceFabricApp.API.Model;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.ServiceFabric.Services.Client;
-using Microsoft.ServiceFabric.Services.Remoting.Client;
-using Microsoft.ServiceFabric.Services.Remoting.V2.FabricTransport.Client;
-using ServiceFabricApp.API.Model;
-using ServiceFabricApp.EquipmentCatalog.Model;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -26,7 +21,7 @@ namespace ServiceFabricApp.API.Controllers
         [HttpGet]
         public async Task<IEnumerable<EquipmentFirmware>> GetAsync()
         {
-            //List<EquipmentFirmware> result = GetEquipmentFirmware();
+            // Populate data from database and mapped with EquipmentFirmware class
             IEnumerable<EquipmentFirmware> allEquipments = GetEquipmentFirmware();
             return allEquipments.Select(e => new EquipmentFirmware
             {
